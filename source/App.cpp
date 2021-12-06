@@ -1,10 +1,23 @@
 /** \file App.cpp */
 #include "App.h"
 
+#include "StairWriter.hpp"
+
 // Tells C++ to invoke command-line main() function even on OS X and Win32.
 G3D_START_AT_MAIN();
 
+
+
 int main(int argc, const char *argv[]) {
+  std::ofstream stair_out("../data-files/scene/stairs.Scene.Any");
+  if (!stair_out.is_open()) {
+    std::cerr << "Failed to open file" << std::endl;
+    exit(1);
+  }
+  StairWriter w(stair_out);
+  w.write();
+  stair_out.close();
+
   initGLG3D(G3DSpecification());
 
   GApp::Settings settings(argc, argv);
