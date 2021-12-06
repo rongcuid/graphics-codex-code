@@ -70,6 +70,7 @@ App::App(const GApp::Settings& settings) : GApp(settings) {
 // not in the constructor so that common exceptions will be
 // automatically caught.
 void App::onInit() {
+    debugPrintf("Target frame rate = %f Hz\n", 1.0f / realTimeTargetDuration());
     GApp::onInit();
 
     setFrameDuration(1.0f / 240.0f);
