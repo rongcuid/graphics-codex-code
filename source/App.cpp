@@ -1,14 +1,10 @@
 /** \file App.cpp */
 #include "App.h"
 
+#ifdef PROJ1
 #include "StairWriter.hpp"
 
-// Tells C++ to invoke command-line main() function even on OS X and Win32.
-G3D_START_AT_MAIN();
-
-
-
-int main(int argc, const char *argv[]) {
+void proj1() {
   std::ofstream stair_out("../data-files/scene/stairs.Scene.Any");
   if (!stair_out.is_open()) {
     std::cerr << "Failed to open file" << std::endl;
@@ -17,6 +13,16 @@ int main(int argc, const char *argv[]) {
   StairWriter w(stair_out);
   w.write();
   stair_out.close();
+}
+#endif
+
+// Tells C++ to invoke command-line main() function even on OS X and Win32.
+G3D_START_AT_MAIN();
+
+int main(int argc, const char *argv[]) {
+#ifdef PROJ1
+  proj1();
+#endif
 
   initGLG3D(G3DSpecification());
 
@@ -232,7 +238,6 @@ void App::makeGUI() {
   debugWindow->pack();
   debugWindow->setRect(Rect2D::xywh(0, 0, (float)window()->width(),
                                     debugWindow->rect().height()));
-
 }
 
 // This default implementation is a direct copy of GApp::onGraphics3D to make it
