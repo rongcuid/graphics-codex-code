@@ -72,7 +72,6 @@ App::App(const GApp::Settings &settings) : GApp(settings) {}
 // not in the constructor so that common exceptions will be
 // automatically caught.
 void App::onInit() {
-  debugPrintf("Target frame rate = %f Hz\n", 1.0f / realTimeTargetDuration());
   GApp::onInit();
 
   setFrameDuration(1.0f / 240.0f);
@@ -220,6 +219,7 @@ void App::makeGUI() {
   debugWindow->pack();
   debugWindow->setRect(Rect2D::xywh(0, 0, (float)window()->width(),
                                     debugWindow->rect().height()));
+
 }
 
 // This default implementation is a direct copy of GApp::onGraphics3D to make it
